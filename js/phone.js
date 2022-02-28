@@ -1,9 +1,10 @@
 const allPhones = () =>{
     const phonesDiv = document.getElementById('search-box').value;
+    
     const url = `https://openapi.programming-hero.com/api/phones?search=${phonesDiv}`
     fetch(url)
     .then(res => res.json())
-    .then(data => displayData(data.data))
+    .then(data => displayData(data.data.slice(0,20)))
 }
 
 const displayData = (phones) => {
@@ -20,12 +21,22 @@ for (const phone of phones){
                 <h5>Phone Name: ${phone.phone_name}</h5>
                 <p>Phone Brand:${phone.brand}</p>
                 <div class="button">
-                    <button class="btn btn-success" >Details</button>
+                    <button onclick="phoneDetails('${phone.slug}')" class="btn btn-success" >Details</button>
                 </div>
             </div>
         </div>
     `
     parent.appendChild(div);
 }
-    
+};
+
+const phoneDetails = (id) => {
+   const url = `https://openapi.programming-hero.com/api/phone/${id}`;
+   fetch(url)
+   .then(res => res.json())
+   .then(data => setDetails(data.data.slug))
+};
+
+const setDetails = (info) => {
+    console.log(info);
 }
