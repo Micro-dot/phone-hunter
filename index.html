@@ -14,13 +14,18 @@
 <body>
     <section class="container">
         <h1 class="text-center">Search Your Best Phone</h1>
+        <!-- Input & Search Bar -->
+        <div class="input-group mb-3 w-50 mx-auto">
+            <input id="search-box" type="text" class="form-control text-center mx-auto" placeholder="Search your phone"> 
+            <button onclick="allPhones()" class="btn btn-outline-secondary" type="button" id="search-btn">Search</button>
+        </div>
 
-    <div class="input-group mb-3">
-        <input type="text" class="form-control text-center mx-auto" placeholder="Search your phone"> 
-        <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
-      </div>
+        <div id="phones" class="col-lg-4">
+
+        </div>
+        <!-- Call API-->
+
     </section>
-
     <!-- Add Javascript File -->
     <script src="js/phone.js"></script>
 </body>
