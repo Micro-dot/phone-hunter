@@ -3,19 +3,22 @@ const allPhones = () =>{
     const searchText = searchPhone.value;
     searchPhone.value = '';
     if(searchText == ''){
-        document.body.style.display=alert('please enter Input field');
+        document.body.style.display=alert('Please Input Field');
     }
-    const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}` 
-    fetch(url)
-    .then(res => res.json())
-    .then(data => displayData(data.data.slice(0,20)))
+    else{
+        const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}` 
+        fetch(url)
+        .then(res => res.json())
+        .then(data => displayData(data.data.slice(0,20)))
+    }
+    
 }
 
 const displayData = (phones) => {
     const searchResult = document.getElementById('phones');
     searchResult.textContent='';
 
-    if(phones.length == 0){
+    if(phones == 0){
         document.body.display=alert('No result found try again');
     }
     
@@ -24,13 +27,13 @@ const displayData = (phones) => {
         const parent = document.getElementById('phones');
         const div = document.createElement('div');
         div.innerHTML=`
-            <div class="col shadow-sm card-group">
+            <div class="col shadow-sm card-group ">
                 <div class=" text-center card border p-2">
-                    <div class=" pro-pic">
+                    <div class="pro-pic">
                         <img src="${phone.image}" alt="">
                     </div>
-                    <h5>Phone Name: ${phone.phone_name}</h5>
-                    <p>Phone Brand:${phone.brand}</p>
+                    <h5><b>Phone Name:</b> ${phone.phone_name}</h5>
+                    <p><b>Phone Brand:</b> ${phone.brand}</p>
                     <div class="button ">
                         <button onclick="phoneDetails('${phone.slug}')" class="btn btn-success" >Details</button>
                     </div>
@@ -50,12 +53,13 @@ const phoneDetails = (id) => {
 };
 
 const setDetails = (info) => {
+    console.log(info);
     
     const phoneDetails = document.getElementById('phone-details');
     phoneDetails.textContent='';
     const div = document.createElement('div');    
     div.innerHTML=`
-    <div class="d-lg-flex shadow-sm mb-5 p-2">
+    <div class="d-lg-flex shadow-lg mb-5 p-2">
         <div class="my-auto">
             <img src="${info.image}" alt="">
         </div>
@@ -69,6 +73,7 @@ const setDetails = (info) => {
             <p><b>Bluetooth:</b> ${info.others ? info.others.Bluetooth:'not available'}</p>
             <p><b>GPS:</b> ${info.others ? info.others.GPS:'not available'}</p>
             <p><b>USB:</b> ${info.others ? info.others.USB:'not available'}</p>
+            <p class="text-break"><b>Sensor:</b> ${info.mainFeatures.sensors ? info.mainFeatures.sensors:'not available'}</p>
         </div>
     </div>
     `
