@@ -2,13 +2,9 @@ const allPhones = () =>{
     const searchPhone = document.getElementById('search-box');
     const searchText = searchPhone.value;
     searchPhone.value = '';
-    
-    
-    
     if(searchText == ''){
         document.body.style.display=alert('please enter Input field');
     }
-
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}` 
     fetch(url)
     .then(res => res.json())
@@ -18,6 +14,10 @@ const allPhones = () =>{
 const displayData = (phones) => {
     const searchResult = document.getElementById('phones');
     searchResult.textContent='';
+
+    if(phones.length == 0){
+        document.body.display=alert('No result found try again');
+    }
     
     for (const phone of phones){
         console.log(phone)
@@ -64,7 +64,7 @@ const setDetails = (info) => {
             <p><b>Chip:</b> ${info.mainFeatures.chipSet}</p>
             <p><b>Storages:</b> ${info.mainFeatures.memory}</p>
             <p><b> Phone ID:</b> ${info.slug}</p>
-            <p><b>${info.releaseDate}</b></p>
+            <p><b>${info.releaseDate ? info.releaseDate:'No release date'}</b></p>
             <p><b>WLAN:</b> ${info.others ? info.others.WLAN:'not available'}</p>
             <p><b>Bluetooth:</b> ${info.others ? info.others.Bluetooth:'not available'}</p>
             <p><b>GPS:</b> ${info.others ? info.others.GPS:'not available'}</p>
