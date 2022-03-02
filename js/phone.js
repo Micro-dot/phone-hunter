@@ -63,7 +63,7 @@ const setDetails = (info) => {
         <div class="my-auto">
             <img src="${info.image}" alt="">
         </div>
-        <div class="card-body">
+        <div class="card-body ">
             <p><b>Display Size:</b> ${info.mainFeatures.displaySize} </p>
             <p><b>Chip:</b> ${info.mainFeatures.chipSet}</p>
             <p><b>Storages:</b> ${info.mainFeatures.memory}</p>
