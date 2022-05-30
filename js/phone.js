@@ -23,7 +23,6 @@ const displayData = (phones) => {
     }
     
     for (const phone of phones){
-        console.log(phone)
         const parent = document.getElementById('phones');
         const div = document.createElement('div');
         div.innerHTML=`
